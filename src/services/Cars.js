@@ -9,6 +9,11 @@ class Cars {
 
         return response.data
     }
+
+    add(data) {
+        return axios.post('/cars', data);
+        
+    }
 }
 
 export const cars = new Cars();

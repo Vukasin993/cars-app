@@ -2,6 +2,7 @@
   <div id="app">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <router-link :to="{name : 'cars'}">Cars</router-link> 
+      <router-link :to="{name : 'add-car'}">Add Car</router-link> 
     </nav>
     <router-view/>
   </div>
@@ -28,4 +29,13 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+     form {display: flex;
+        flex-direction: column;
+     }
+
+     form button {
+       width: 100px;
+       margin-left: auto;
+       margin-right: auto;
+     }
 </style>
