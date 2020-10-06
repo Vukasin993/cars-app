@@ -1,29 +1,11 @@
 <template>
   <div id="app">
-    <Cars msg="Welcome to Your Vue.js App"/>
+    <div id="nav">
+      <router-link :to="{name : 'cars'}">Cars</router-link> |
+    </div>
+    <router-view/>
   </div>
 </template>
-
-<script>
-import Cars from './components/Cars.vue'
-import Vue from 'vue'
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
-
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
-
-// Install BootstrapVue
-Vue.use(BootstrapVue)
-// Optionally install the BootstrapVue icon components plugin
-Vue.use(IconsPlugin)
-
-export default {
-  name: 'App',
-  components: {
-    Cars
-  }
-}
-</script>
 
 <style>
 #app {
@@ -32,6 +14,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
