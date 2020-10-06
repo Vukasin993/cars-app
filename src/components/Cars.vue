@@ -1,53 +1,47 @@
 <template>
   <div class="hello">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+    <table>
+        <tr>
+          <td>id</td>
+            <td>brand</td>
+            <td>model</td>
+            <td>year</td>
+            <td>maxSpeed</td>
+            <td>isAutomatic</td>
+            <td>engine</td>
+            <td>numberOfDoors</td>
+        </tr>
+        <tr v-for="(car, index) in cars" :key="index"> 
+            <td>{{car.id}}</td>
+            <td>{{car.brand}}</td>
+            <td>{{car.model}}</td>
+            <td>{{car.year}}</td>
+            <td>{{car.maxSpeed}}</td>
+            <td>{{car.isAutomatic}}</td>
+            <td>{{car.engine}}</td>
+            <td>{{car.numberOfDoors}}</td>
+      </tr>
+
+    </table>
   </div>
 </template>
 
 <script>
+import {cars} from '../services/Cars'
+
 export default {
-  name: 'Cars',
-  props: {
-    msg: String
-  }
+    data () {
+        return {
+            cars: []
+        }
+    },
+    async created() {
+      this.cars = await cars.getAll()
+      console.log(this.cars)
+    }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+<style lang="stylus">
+
 </style>

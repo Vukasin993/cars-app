@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link :to="{name : 'cars'}">Cars</router-link> |
-    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <router-link :to="{name : 'cars'}">Cars</router-link> 
+    </nav>
     <router-view/>
   </div>
 </template>
