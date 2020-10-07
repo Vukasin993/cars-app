@@ -2,18 +2,18 @@
     <div>
     <h2>Add Car</h2>
     <form @submit.prevent="addCar" @reset="onReset">
-        <input v-model="brand" type="text" placeholder="Unesi brend">
-        <input v-model="model" type="text" placeholder="Unesi model">
-        <select v-model="year">
+        <input v-model="brand" type="text" required="required" minlength="2"  placeholder="Unesi brend">
+        <input v-model="model" type="text" required="required" minlength="2"  placeholder="Unesi model">
+        <select v-model="year" required="required">
             <option disabled value="">Please select year</option>
             <option v-for="(n, index) in 28" :key="index">{{n + 1989}} </option>
         </select>
         <input v-model="maxSpeed" type="number" placeholder="Unesi maxSpeed">
         <label  for="isAutomatic">Automatic or Manual</label>
-        <input type="checkbox" id="automatic" value="true" v-model="isAutomatic">
+        <input type="checkbox" id="automatic" required="required" value="true" v-model="isAutomatic">
         <label for="automatic">Automatic</label>
-        <input v-model="engine" type="text" for="engine" placeholder="Unesi motor">
-        <input v-model="numberOfDoors" type="number" placeholder="Unesi numberOfDoors">
+        <input v-model="engine" type="text" required="required" for="engine" placeholder="Unesi motor">
+        <input v-model="numberOfDoors" required="required" type="number" placeholder="Unesi numberOfDoors">
         <button>Submit</button>
         <button name="reset" type="reset" class="btn btn-default">Reset</button>
         <button name="preview" type="button" class="btn btn-default" @click="previewCar">Preview</button>
@@ -54,7 +54,7 @@ export default {
 
         previewCar() {
                alert(
-                this.$data.brand + 
+                'brand: ' + this.$data.brand + 
                 ' model: ' +  this.$data.model +
                 ' year: ' +  this.$data.year +
                 ' maxSpeed: ' +  this.$data.maxSpeed +
