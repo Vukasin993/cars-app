@@ -2,7 +2,7 @@
     <div>
     <h2>Add Car</h2>
     <form @submit.prevent="addCar" @reset="onReset">
-        <input v-model="brend" type="text" placeholder="Unesi brend">
+        <input v-model="brand" type="text" placeholder="Unesi brend">
         <input v-model="model" type="text" placeholder="Unesi model">
         <select v-model="year">
             <option disabled value="">Please select year</option>
@@ -10,14 +10,13 @@
         </select>
         <input v-model="maxSpeed" type="number" placeholder="Unesi maxSpeed">
         <label  for="isAutomatic">Automatic or Manual</label>
-        <input type="checkbox" id="automatic" value="automatic" v-model="isAutomatic">
+        <input type="checkbox" id="automatic" value="true" v-model="isAutomatic">
         <label for="automatic">Automatic</label>
-        <input type="checkbox" id="manual" value="manual">
-        <label for="manual">Manual</label>
         <input v-model="engine" type="text" for="engine" placeholder="Unesi motor">
         <input v-model="numberOfDoors" type="number" placeholder="Unesi numberOfDoors">
         <button>Submit</button>
-         <button name="reset" type="reset" class="btn btn-default">Reset</button>
+        <button name="reset" type="reset" class="btn btn-default">Reset</button>
+        <button name="preview" type="button" class="btn btn-default" @click="previewCar">Preview</button>
     </form>
     </div>
 
@@ -30,7 +29,7 @@ import {cars} from '../services/Cars'
 export default {
     data () {
         return {
-            brend: '',
+            brand: '',
             model: '',
             year: '',
             maxSpeed: '',
@@ -42,7 +41,7 @@ export default {
 
     methods: {
         onReset () {
-            this.$data.brend = '35ddd',
+            this.$data.brand = '',
             this.$data.model= '',
             this.$data.year= '',
             this.$data.maxSpeed= '',
@@ -50,11 +49,26 @@ export default {
             this.$data.engine= '',
             this.$data.numberOfDoors= '',
             console.log("tu smo"),
-             this.$router.push({ name: 'add-car'})
+            this.$router.push({ name: 'add-car'})
         },
+
+        previewCar() {
+               alert(
+                this.$data.brand + 
+                ' model: ' +  this.$data.model +
+                ' year: ' +  this.$data.year +
+                ' maxSpeed: ' +  this.$data.maxSpeed +
+                ' isAutomatic: ' +  this.$data.isAutomatic +
+                ' engine: ' +  this.$data.engine +
+                ' numberOfDoors: ' +  this.$data.numberOfDoors
+              
+
+    )
+        },
+
         addCar() {
             const newCar = {
-                brand: this.brend,
+                brand: this.brand,
                 model: this.model,
                 year: this.year, 
                 maxSpeed: this.maxSpeed,
@@ -65,7 +79,7 @@ export default {
 
             console.log(newCar)
             cars.add(newCar)
-            this.brend = '',
+            this.brand = '',
             this.model = '',
             this.year = '',
             this.maxSpeed = '',
