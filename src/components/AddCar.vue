@@ -1,7 +1,7 @@
 <template>
     <div>
     <h2>Add Car</h2>
-    <form @submit.prevent="addCar">
+    <form @submit.prevent="addCar" @reset="onReset">
         <input v-model="brend" type="text" placeholder="Unesi brend">
         <input v-model="model" type="text" placeholder="Unesi model">
         <select v-model="year">
@@ -17,6 +17,7 @@
         <input v-model="engine" type="text" for="engine" placeholder="Unesi motor">
         <input v-model="numberOfDoors" type="number" placeholder="Unesi numberOfDoors">
         <button>Submit</button>
+         <button name="reset" type="reset" class="btn btn-default">Reset</button>
     </form>
     </div>
 
@@ -40,6 +41,17 @@ export default {
     },
 
     methods: {
+        onReset () {
+            this.$data.brend = '35ddd',
+            this.$data.model= '',
+            this.$data.year= '',
+            this.$data.maxSpeed= '',
+            this.$data.isAutomatic= '',
+            this.$data.engine= '',
+            this.$data.numberOfDoors= '',
+            console.log("tu smo"),
+             this.$router.push({ name: 'add-car'})
+        },
         addCar() {
             const newCar = {
                 brand: this.brend,
@@ -48,8 +60,9 @@ export default {
                 maxSpeed: this.maxSpeed,
                 isAutomatic: this.isAutomatic,
                 engine: this.engine,
-                numberOfDoors: this.numberOfDoors
+                numberOfDoors: this.numberOfDoors                
             }
+
             console.log(newCar)
             cars.add(newCar)
             this.brend = '',
@@ -57,7 +70,8 @@ export default {
             this.year = '',
             this.maxSpeed = '',
             this.isAutomatic = '',
-            this.numberOfDoors = ''
+            this.numberOfDoors = '',
+            this.$router.push({ name: 'cars'})
         }
     },
 }
