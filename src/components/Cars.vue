@@ -22,6 +22,7 @@
             <td>{{car.engine}}</td>
             <td>{{car.numberOfDoors}}</td>
            <router-link :to="{ name: 'edit', params: { id: car.id } }">Edit</router-link>
+            <button @click="deleteCar(car.id)">Delete</button>
       </tr>
 
     </table>
@@ -41,7 +42,17 @@ export default {
     async created() {
       this.cars = await cars.getAll()
      
-    }
+    },
+methods: {
+  deleteCar(id) {
+      cars.delete(id).then(() => {
+       cars.getAll().then((data)=> {
+          this.cars = data
+        })
+      });
+}
+}
+
 }
 </script>
 
