@@ -10,6 +10,7 @@
             <td>isAutomatic</td>
             <td>engine</td>
             <td>numberOfDoors</td>
+            <td>Edit</td>
         </tr>
         <tr v-for="(car, index) in cars" :key="index"> 
             <td>{{car.id}}</td>
@@ -20,6 +21,7 @@
             <td>{{car.isAutomatic}}</td>
             <td>{{car.engine}}</td>
             <td>{{car.numberOfDoors}}</td>
+           <router-link :to="{ name: 'edit', params: { id: car.id } }">Edit</router-link>
       </tr>
 
     </table>
@@ -30,6 +32,7 @@
 import {cars} from '../services/Cars'
 
 export default {
+   props: ['car'],
     data () {
         return {
             cars: []
@@ -37,7 +40,7 @@ export default {
     },
     async created() {
       this.cars = await cars.getAll()
-      console.log(this.cars)
+     
     }
 }
 </script>
