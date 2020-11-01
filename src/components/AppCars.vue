@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
-    <table>
+    <table >
+
         <tr> 
             <td>{{carData.id}}</td>
             <td>{{carData.brand}}</td>

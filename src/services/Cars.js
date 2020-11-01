@@ -2,11 +2,18 @@ import axios from 'axios';
 
 class Cars {
     constructor() {
-        axios.defaults.baseURL = 'http://localhost:3000/api';
+        axios.defaults.baseURL = 'http://localhost:8000/api';
+        axios.interceptors.request.use(function(config) {
+            const token = localStorage.getItem('token');
+            if(token) {
+                config.headers.Authoratization = "Bearer " + token;
+            }
+            return config;
+        });
     }
     async getAll() {
         const response = await axios.get('/cars');
-
+        console.log('nema auta');
         return response.data
     }
 
@@ -19,8 +26,8 @@ class Cars {
         return axios.get(`/cars/${id}`);
     }
 
-    edit(car)  {
-        return axios.put(`/cars/${car.id}`, car);
+    edit(id)  {
+        return axios.put(`/cars/${id}`);
     }
 
     delete(id)  {
